@@ -9,65 +9,73 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final halfWidth = screenWidth / 2;
-
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: SizedBox(
-            width: halfWidth,
-            child: const Column(
+          child: FractionallySizedBox(
+            widthFactor: 0.5,
+            child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: Placeholder(),
+                Expanded(child: Container()),
+                Column(
+                  children: [
+                    const AspectRatio(
+                      aspectRatio: 1,
+                      child: Placeholder(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '** ℃',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(color: Colors.blue),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              '** ℃',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(color: Colors.red),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16, bottom: 16),
-                  child: Row(
+                const Expanded(
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            '** ℃',
-                            style: TextStyle(color: Colors.blue),
-                          ),
-                        ),
+                      SizedBox(
+                        height: 80,
                       ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            '** ℃',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 80,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16, bottom: 16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: TextButton(
-                            onPressed: null,
-                            child: Text('Close'),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: TextButton(
-                            onPressed: null,
-                            child: Text('Reload'),
-                          ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 16, bottom: 16),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextButton(
+                                onPressed: null,
+                                child: Text('Close'),
+                              ),
+                            ),
+                            Expanded(
+                              child: TextButton(
+                                onPressed: null,
+                                child: Text('Reload'),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
