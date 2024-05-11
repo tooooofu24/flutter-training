@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(child: Container()),
+                const Spacer(),
                 Column(
                   children: [
                     const AspectRatio(
