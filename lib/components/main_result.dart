@@ -1,13 +1,20 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MainResult extends StatelessWidget {
   const MainResult({
-    Key? key, // super.key を追加
     required this.weatherCondition,
-  }) : super(key: key); // super() コンストラクタの呼び出しを追加
+    super.key,
+  });
 
   final String weatherCondition;
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(StringProperty('weatherCondition', weatherCondition));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class MainResult extends StatelessWidget {
       iconPath = 'assets/rainy.svg';
     } else {
       return const AspectRatio(
-        aspectRatio: 1, // const を削除
+        aspectRatio: 1,
         child: Center(
           child: Placeholder(),
         ),
@@ -28,7 +35,7 @@ class MainResult extends StatelessWidget {
     }
 
     return AspectRatio(
-      aspectRatio: 1, // const を削除
+      aspectRatio: 1,
       child: Center(
         child: SvgPicture.asset(
           iconPath,
