@@ -13,16 +13,19 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future(() async {
-      await WidgetsBinding.instance.endOfFrame.then((_) {
-        Future.delayed(const Duration(milliseconds: 500), () {
-          Navigator.push(
-            context,
-            MaterialPageRoute<dynamic>(
-              builder: (context) => const MainScreen(),
-            ),
-          );
-        });
-      });
+      await _initialize();
+    });
+  }
+
+  Future<void> _initialize() async {
+    await WidgetsBinding.instance.endOfFrame;
+    await Future.delayed(const Duration(milliseconds: 500), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute<dynamic>(
+          builder: (context) => const MainScreen(),
+        ),
+      );
     });
   }
 
