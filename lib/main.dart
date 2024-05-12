@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_training/screens/main_screen.dart';
+import 'package:flutter_training/screens/splash_screen.dart';
 import 'package:flutter_training/state/main_state.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
       create: (context) => MainState(),
       child: const MaterialApp(
         title: 'Namer App',
-        home: MainScreen(),
+        home: SplashScreen(),
       ),
     );
   }
