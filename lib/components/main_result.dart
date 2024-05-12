@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MainResult extends StatelessWidget {
   const MainResult({
@@ -10,17 +11,13 @@ class MainResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    IconData icon;
-    Color iconColor;
+    String iconPath;
     if (weatherCondition == 'sunny') {
-      icon = Icons.wb_sunny;
-      iconColor = Colors.red;
+      iconPath = 'assets/sunny.svg';
     } else if (weatherCondition == 'cloudy') {
-      icon = Icons.wb_cloudy;
-      iconColor = Colors.grey;
+      iconPath = 'assets/cloudy.svg';
     } else if (weatherCondition == 'rainy') {
-      icon = Icons.beach_access;
-      iconColor = Colors.blue;
+      iconPath = 'assets/rainy.svg';
     } else {
       return const AspectRatio(
         aspectRatio: 1, // const を削除
@@ -33,10 +30,10 @@ class MainResult extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1, // const を削除
       child: Center(
-        child: Icon(
-          icon,
-          size: 150,
-          color: iconColor,
+        child: SvgPicture.asset(
+          iconPath,
+          width: 150,
+          height: 150,
         ),
       ),
     );
