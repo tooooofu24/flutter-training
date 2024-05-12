@@ -69,7 +69,7 @@ class MainScreen extends StatelessWidget {
                             ),
                             Expanded(
                               child: TextButton(
-                                onPressed: () => state.fetchWetherCondition(),
+                                onPressed: state.fetchWetherCondition,
                                 child: const Text('Reload'),
                               ),
                             ),
