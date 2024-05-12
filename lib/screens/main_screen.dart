@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training/components/main_result.dart';
-import 'package:flutter_training/screens/splash_screen.dart';
 import 'package:flutter_training/state/main_state.dart';
 import 'package:provider/provider.dart';
 
@@ -64,15 +63,7 @@ class MainScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: TextButton(
-                                onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute<dynamic>(
-                                      builder: (context) =>
-                                          const SplashScreen(),
-                                    ),
-                                  );
-                                },
+                                onPressed: () => Navigator.pop(context),
                                 child: const Text('Close'),
                               ),
                             ),
