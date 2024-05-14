@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_training/screens/main_screen.dart';
 
@@ -12,9 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future(() async {
-      await _initialize();
-    });
+    unawaited(_initialize());
   }
 
   Future<void> _initialize() async {
