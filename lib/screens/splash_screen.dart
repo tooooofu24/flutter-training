@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_training/mixins/after_end_of_frame_mixin.dart';
 import 'package:flutter_training/screens/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,15 +10,14 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> with AfterEndOfFrameMixin {
   @override
   void initState() {
     super.initState();
-    unawaited(_initialize());
+    afterEndOfFrame(_initialize);
   }
 
   Future<void> _initialize() async {
-    await WidgetsBinding.instance.endOfFrame;
     await Future.delayed(const Duration(milliseconds: 500), () {
       Navigator.push(
         context,
