@@ -61,10 +61,10 @@ class MainScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 16, bottom: 16),
                         child: Row(
                           children: [
-                            const Expanded(
+                            Expanded(
                               child: TextButton(
-                                onPressed: null,
-                                child: Text('Close'),
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('Close'),
                               ),
                             ),
                             Expanded(
