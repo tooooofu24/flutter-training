@@ -2,9 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_training/components/main_result.dart';
 import 'package:flutter_training/state/main_state.dart';
 import 'package:provider/provider.dart';
+import 'package:yumemi_weather/yumemi_weather.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
+
+  Future<void> _showErrorDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('仮のテキスト'),
+          actions: [
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +89,13 @@ class MainScreen extends StatelessWidget {
                             ),
                             Expanded(
                               child: TextButton(
-                                onPressed: state.fetchWetherCondition,
+                                onPressed: () async {
+                                  try {
+                                    state.fetchWetherCondition();
+                                  } on YumemiWeatherError {
+                                    await _showErrorDialog(context);
+                                  }
+                                },
                                 child: const Text('Reload'),
                               ),
                             ),

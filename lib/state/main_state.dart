@@ -8,7 +8,7 @@ class MainState extends ChangeNotifier {
 
   void fetchWetherCondition() {
     final yumemiWeather = YumemiWeather();
-    final weatherCondition = yumemiWeather.fetchSimpleWeather();
+    final weatherCondition = yumemiWeather.fetchThrowsWeather('tokyo');
     _weatherCondition = weatherCondition;
     notifyListeners();
   }
