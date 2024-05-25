@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_training/models/weather.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
 
 class MainState extends ChangeNotifier {
@@ -15,10 +16,10 @@ class MainState extends ChangeNotifier {
          "date": "2020-04-01T12:00:00+09:00"
      }''';
     final yumemiWeather = YumemiWeather();
-    final weatherConditionJson = yumemiWeather.fetchWeather(json);
-    final weatherCondition =
-        jsonDecode(weatherConditionJson) as Map<String, dynamic>;
-    _weatherCondition = weatherCondition['weather_condition'] as String;
+    final weatherJson =
+        jsonDecode(yumemiWeather.fetchWeather(json)) as Map<String, dynamic>;
+    final weather = Weather.fromJson(weatherJson);
+    _weatherCondition = weather.weather_condition;
     notifyListeners();
   }
 }
