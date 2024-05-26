@@ -19,7 +19,7 @@ class MainState extends ChangeNotifier {
     final weatherJson =
         jsonDecode(yumemiWeather.fetchWeather(json)) as Map<String, dynamic>;
     final weather = Weather.fromJson(weatherJson);
-    _weatherCondition = weather.weather_condition;
+    _weatherCondition = weather.weatherCondition;
     notifyListeners();
   }
 }

@@ -8,16 +8,16 @@ part of 'weather.dart';
 
 _$WeatherImpl _$$WeatherImplFromJson(Map<String, dynamic> json) =>
     _$WeatherImpl(
-      weather_condition: json['weather_condition'] as String,
-      max_temperature: (json['max_temperature'] as num).toInt(),
-      min_temperature: (json['min_temperature'] as num).toInt(),
+      weatherCondition: json['weather_condition'] as String,
+      maxTemperature: (json['max_temperature'] as num).toInt(),
+      minTemperature: (json['min_temperature'] as num).toInt(),
       date: json['date'] as String,
     );
 
 Map<String, dynamic> _$$WeatherImplToJson(_$WeatherImpl instance) =>
     <String, dynamic>{
-      'weather_condition': instance.weather_condition,
-      'max_temperature': instance.max_temperature,
-      'min_temperature': instance.min_temperature,
+      'weather_condition': instance.weatherCondition,
+      'max_temperature': instance.maxTemperature,
+      'min_temperature': instance.minTemperature,
       'date': instance.date,
     };

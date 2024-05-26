@@ -20,9 +20,12 @@ Weather _$WeatherFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Weather {
-  String get weather_condition => throw _privateConstructorUsedError;
-  int get max_temperature => throw _privateConstructorUsedError;
-  int get min_temperature => throw _privateConstructorUsedError;
+  @JsonKey(name: 'weather_condition')
+  String get weatherCondition => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_temperature')
+  int get maxTemperature => throw _privateConstructorUsedError;
+  @JsonKey(name: 'min_temperature')
+  int get minTemperature => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,9 +39,9 @@ abstract class $WeatherCopyWith<$Res> {
       _$WeatherCopyWithImpl<$Res, Weather>;
   @useResult
   $Res call(
-      {String weather_condition,
-      int max_temperature,
-      int min_temperature,
+      {@JsonKey(name: 'weather_condition') String weatherCondition,
+      @JsonKey(name: 'max_temperature') int maxTemperature,
+      @JsonKey(name: 'min_temperature') int minTemperature,
       String date});
 }
 
@@ -55,23 +58,23 @@ class _$WeatherCopyWithImpl<$Res, $Val extends Weather>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weather_condition = null,
-    Object? max_temperature = null,
-    Object? min_temperature = null,
+    Object? weatherCondition = null,
+    Object? maxTemperature = null,
+    Object? minTemperature = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
-      weather_condition: null == weather_condition
-          ? _value.weather_condition
-          : weather_condition // ignore: cast_nullable_to_non_nullable
+      weatherCondition: null == weatherCondition
+          ? _value.weatherCondition
+          : weatherCondition // ignore: cast_nullable_to_non_nullable
               as String,
-      max_temperature: null == max_temperature
-          ? _value.max_temperature
-          : max_temperature // ignore: cast_nullable_to_non_nullable
+      maxTemperature: null == maxTemperature
+          ? _value.maxTemperature
+          : maxTemperature // ignore: cast_nullable_to_non_nullable
               as int,
-      min_temperature: null == min_temperature
-          ? _value.min_temperature
-          : min_temperature // ignore: cast_nullable_to_non_nullable
+      minTemperature: null == minTemperature
+          ? _value.minTemperature
+          : minTemperature // ignore: cast_nullable_to_non_nullable
               as int,
       date: null == date
           ? _value.date
@@ -89,9 +92,9 @@ abstract class _$$WeatherImplCopyWith<$Res> implements $WeatherCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String weather_condition,
-      int max_temperature,
-      int min_temperature,
+      {@JsonKey(name: 'weather_condition') String weatherCondition,
+      @JsonKey(name: 'max_temperature') int maxTemperature,
+      @JsonKey(name: 'min_temperature') int minTemperature,
       String date});
 }
 
@@ -106,23 +109,23 @@ class __$$WeatherImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weather_condition = null,
-    Object? max_temperature = null,
-    Object? min_temperature = null,
+    Object? weatherCondition = null,
+    Object? maxTemperature = null,
+    Object? minTemperature = null,
     Object? date = null,
   }) {
     return _then(_$WeatherImpl(
-      weather_condition: null == weather_condition
-          ? _value.weather_condition
-          : weather_condition // ignore: cast_nullable_to_non_nullable
+      weatherCondition: null == weatherCondition
+          ? _value.weatherCondition
+          : weatherCondition // ignore: cast_nullable_to_non_nullable
               as String,
-      max_temperature: null == max_temperature
-          ? _value.max_temperature
-          : max_temperature // ignore: cast_nullable_to_non_nullable
+      maxTemperature: null == maxTemperature
+          ? _value.maxTemperature
+          : maxTemperature // ignore: cast_nullable_to_non_nullable
               as int,
-      min_temperature: null == min_temperature
-          ? _value.min_temperature
-          : min_temperature // ignore: cast_nullable_to_non_nullable
+      minTemperature: null == minTemperature
+          ? _value.minTemperature
+          : minTemperature // ignore: cast_nullable_to_non_nullable
               as int,
       date: null == date
           ? _value.date
@@ -136,26 +139,29 @@ class __$$WeatherImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeatherImpl implements _Weather {
   _$WeatherImpl(
-      {required this.weather_condition,
-      required this.max_temperature,
-      required this.min_temperature,
+      {@JsonKey(name: 'weather_condition') required this.weatherCondition,
+      @JsonKey(name: 'max_temperature') required this.maxTemperature,
+      @JsonKey(name: 'min_temperature') required this.minTemperature,
       required this.date});
 
   factory _$WeatherImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherImplFromJson(json);
 
   @override
-  final String weather_condition;
+  @JsonKey(name: 'weather_condition')
+  final String weatherCondition;
   @override
-  final int max_temperature;
+  @JsonKey(name: 'max_temperature')
+  final int maxTemperature;
   @override
-  final int min_temperature;
+  @JsonKey(name: 'min_temperature')
+  final int minTemperature;
   @override
   final String date;
 
   @override
   String toString() {
-    return 'Weather(weather_condition: $weather_condition, max_temperature: $max_temperature, min_temperature: $min_temperature, date: $date)';
+    return 'Weather(weatherCondition: $weatherCondition, maxTemperature: $maxTemperature, minTemperature: $minTemperature, date: $date)';
   }
 
   @override
@@ -163,19 +169,19 @@ class _$WeatherImpl implements _Weather {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherImpl &&
-            (identical(other.weather_condition, weather_condition) ||
-                other.weather_condition == weather_condition) &&
-            (identical(other.max_temperature, max_temperature) ||
-                other.max_temperature == max_temperature) &&
-            (identical(other.min_temperature, min_temperature) ||
-                other.min_temperature == min_temperature) &&
+            (identical(other.weatherCondition, weatherCondition) ||
+                other.weatherCondition == weatherCondition) &&
+            (identical(other.maxTemperature, maxTemperature) ||
+                other.maxTemperature == maxTemperature) &&
+            (identical(other.minTemperature, minTemperature) ||
+                other.minTemperature == minTemperature) &&
             (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, weather_condition, max_temperature, min_temperature, date);
+      runtimeType, weatherCondition, maxTemperature, minTemperature, date);
 
   @JsonKey(ignore: true)
   @override
@@ -193,19 +199,23 @@ class _$WeatherImpl implements _Weather {
 
 abstract class _Weather implements Weather {
   factory _Weather(
-      {required final String weather_condition,
-      required final int max_temperature,
-      required final int min_temperature,
+      {@JsonKey(name: 'weather_condition')
+      required final String weatherCondition,
+      @JsonKey(name: 'max_temperature') required final int maxTemperature,
+      @JsonKey(name: 'min_temperature') required final int minTemperature,
       required final String date}) = _$WeatherImpl;
 
   factory _Weather.fromJson(Map<String, dynamic> json) = _$WeatherImpl.fromJson;
 
   @override
-  String get weather_condition;
+  @JsonKey(name: 'weather_condition')
+  String get weatherCondition;
   @override
-  int get max_temperature;
+  @JsonKey(name: 'max_temperature')
+  int get maxTemperature;
   @override
-  int get min_temperature;
+  @JsonKey(name: 'min_temperature')
+  int get minTemperature;
   @override
   String get date;
   @override

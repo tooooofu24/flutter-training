@@ -6,9 +6,9 @@ part 'weather.g.dart';
 @freezed
 class Weather with _$Weather {
   factory Weather({
-    required String weather_condition,
-    required int max_temperature,
-    required int min_temperature,
+    @JsonKey(name: 'weather_condition') required String weatherCondition,
+    @JsonKey(name: 'max_temperature') required int maxTemperature,
+    @JsonKey(name: 'min_temperature') required int minTemperature,
     required String date,
   }) = _Weather;
 
