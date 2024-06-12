@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_training/components/main_result.dart';
-import 'package:flutter_training/state/main_state.dart';
-import 'package:provider/provider.dart';
-import 'package:yumemi_weather/yumemi_weather.dart';
+import 'package:flutter_training/providers/weather_provider.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});
 
-  Future<void> _showErrorDialog(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('仮のテキスト'),
-          actions: [
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // Future<void> _showErrorDialog(BuildContext context) async {
+  //   return showDialog<void>(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: const Text('仮のテキスト'),
+  //         actions: [
+  //           TextButton(
+  //             child: const Text('OK'),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
-  Widget build(BuildContext context) {
-    final state = context.watch<MainState>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final weather = ref.watch(weatherProvider);
 
     return MaterialApp(
       home: Scaffold(
@@ -41,7 +40,14 @@ class MainScreen extends StatelessWidget {
                 const Spacer(),
                 Column(
                   children: [
-                    MainResult(weatherCondition: state.weatherCondition),
+                    switch (weather) {
+                      AsyncData(:final value) => MainResult(
+                          weatherCondition: value.weatherCondition,
+                        ),
+                      AsyncError() =>
+                        const Text('Oops, something unexpected happened'),
+                      _ => const CircularProgressIndicator(),
+                    },
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: Row(
@@ -89,13 +95,7 @@ class MainScreen extends StatelessWidget {
                             ),
                             Expanded(
                               child: TextButton(
-                                onPressed: () async {
-                                  try {
-                                    state.fetchWetherCondition();
-                                  } on YumemiWeatherError {
-                                    await _showErrorDialog(context);
-                                  }
-                                },
+                                onPressed: () => ref.refresh(weatherProvider),
                                 child: const Text('Reload'),
                               ),
                             ),
