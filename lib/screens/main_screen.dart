@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_training/components/main_result.dart';
 import 'package:flutter_training/providers/weather_provider.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});
 
   Future<void> _showErrorDialog(BuildContext context) async {
@@ -26,82 +26,50 @@ class MainScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        final weather = ref.watch(weatherProvider);
-        return MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: FractionallySizedBox(
-                widthFactor: 0.5,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final weather = ref.watch(weatherProvider);
+
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: FractionallySizedBox(
+            widthFactor: 0.5,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Spacer(),
+                Column(
                   children: [
-                    const Spacer(),
-                    Column(
-                      children: [
-                        switch (weather) {
-                          AsyncData(:final value) => MainResult(
-                              weatherCondition: value.weatherCondition,
-                            ),
-                          AsyncError() =>
-                            const Text('Oops, something unexpected happened'),
-                          _ => const CircularProgressIndicator(),
-                        },
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  '** ℃',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge
-                                      ?.copyWith(color: Colors.blue),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  '** ℃',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge
-                                      ?.copyWith(color: Colors.red),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
-                          ),
+                    switch (weather) {
+                      AsyncData(:final value) => MainResult(
+                          weatherCondition: value.weatherCondition,
                         ),
-                      ],
-                    ),
-                    Expanded(
-                      child: Column(
+                      AsyncError() =>
+                        const Text('Oops, something unexpected happened'),
+                      _ => const CircularProgressIndicator(),
+                    },
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Row(
                         children: [
-                          const SizedBox(
-                            height: 80,
+                          Expanded(
+                            child: Text(
+                              '** ℃',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(color: Colors.blue),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16, bottom: 16),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: const Text('Close'),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: TextButton(
-                                    onPressed: () =>
-                                        ref.refresh(weatherProvider),
-                                    child: const Text('Reload'),
-                                  ),
-                                ),
-                              ],
+                          Expanded(
+                            child: Text(
+                              '** ℃',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(color: Colors.red),
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ],
@@ -109,11 +77,39 @@ class MainScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 80,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16, bottom: 16),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('Close'),
+                              ),
+                            ),
+                            Expanded(
+                              child: TextButton(
+                                onPressed: () => ref.refresh(weatherProvider),
+                                child: const Text('Reload'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
